@@ -14,8 +14,11 @@ set(DOXYFILE_LATEX OFF)
 #Build configuration
 include_directories(${CMAKE_SOURCE_DIR}/src/lib ${PKGCONFIG_LIBUSB_INCLUDE_DIRS})
 
-add_library(libusbhume STATIC src/lib/libusbhume.c src/lib/libusbhume.h )
+add_library(usbhume STATIC src/lib/libusbhume.c src/lib/libusbhume.h )
 
-add_executable(usbhume src/usbhume/usbhume.c)
+add_executable(usbhumereq src/usbhume/usbhume.c)
 
-target_link_libraries(usbhume libusbhume ${PKGCONFIG_LIBUSB_LIBRARIES})
+target_link_libraries(usbhumereq usbhume ${PKGCONFIG_LIBUSB_LIBRARIES})
+
+install(TARGETS usbhume usbhumereq RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+install(FILES src/lib/libusbhume.h DESTINATION include)
