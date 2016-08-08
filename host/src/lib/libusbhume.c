@@ -31,9 +31,7 @@ struct usbhumeDevice* usbhumeOpen() {
       for (d = usbBus->devices; d; d = d->next) {
           if ((d->descriptor.idVendor == USBHUME_VID) && (d->descriptor.idProduct == USBHUME_PID)) {
               USB_Device = usb_open(d);
-              if (usb_detach_kernel_driver_np(USB_Device, 0)<0) {
-                  return NULL;
-              }
+              usb_detach_kernel_driver_np(USB_Device, 0);
               if (usb_set_configuration(USB_Device, 1)<0) {
                   return NULL;
               }

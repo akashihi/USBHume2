@@ -52,9 +52,10 @@ int main( int argc, char **argv) {
         }
         free(reply);
         usbhumeClose(uh);
+        return 1;
     }
 
-    printf("RH: %u%%, T: %uC", reply->rh, reply->t);
+    printf("RH: %u%%, T: %uC\n", reply->rh, reply->t);
     
     free(reply);
     usbhumeClose(uh);
