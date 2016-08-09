@@ -2,7 +2,7 @@
 
 USB hygrometer and thermometer, based on DTH11/DHT22 sensor.
 
-Once i needed to log humidity change on the premises and it it were faster, to build usb based sensor myself, rather to order ready made device and wait several weeks for delivery
+Once i needed to log humidity change on the premises and it was faster, to build usb based sensor myself, rather then to order ready made device and wait several weeks for delivery
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ For host software you'll need [libusb](http://libusb.org/), [CMake](https://cmak
 
 Firmware is built on to of STM32 HAL, FreeRTOS and ST's USB library. You will need [Keil uVision 5](http://www.keil.com/) to build or modify it. Pre-built copy of firmware is included into each release.
 
-Schematics and board made with [Eagle](https://cadsoft.io/). PCB is single layer and it is compatible with [IDE24S enclosure](http://rcl.lt/index.php?id=2&lang=en&begin=0&acc=show&fid=563&pcode=IDE24S&pmode=&frame=3)  Release kit includes PDF with copper, cream and silk masks.
+Schematics and board made with [Eagle](https://cadsoft.io/). PCB is single layer and is compatible with [IDE24S enclosure](http://rcl.lt/index.php?id=2&lang=en&begin=0&acc=show&fid=563&pcode=IDE24S&pmode=&frame=3). Release kit includes PDF with copper, cream and silk masks.
 
 ### Making the device
 
@@ -48,8 +48,9 @@ Install [Keil uVision 5](http://www.keil.com/) and build firmware from directory
 
 Firmware is built on top of STM32 HAL, FreeRTOS and ST's USB library. In implements custom HID device, that can be only read.
 
-VID: 0xF055
-PID: 0xA8D1
+**VID: 0xF055**
+
+**PID: 0xA8D1**
 
 Firmware provides out interface 0 with report id 0x81. Requesting that report will result in getting four bytes:
 
@@ -64,11 +65,11 @@ If error code is not zero, other values shouldn't be trusted. Possible values fo
 * 0x02 - sensor confirmed request, but didn't transferred response.
 * 0xED - request transferred ok, but CRC check failed.
 
-It is normal, if you see those errors time to time (especially after device power-up), but continuous stream of errors mean hardware malfunction.
+It is normal to see those errors from time to time (especially after device power-up), but continuous stream of errors mean hardware malfunction.
 
-Humidity and temperature values could contain special codes, like 0xFF or 0xEE, meaning timeout during reading that value. Appearance of such codes are usually accompanied with 0xED value in error code field.
+Humidity and temperature values could contain special codes, like 0xFF or 0xEE, meaning timeout during reading that value. Appearance of such codes is usually accompanied with 0xED value in error code field.
 
-Firmware internally is built using three tasks - one task for blinking RDY led to signal, that it is still alive and running. Second thread is requesting measurements from sensor every 60 seconds and third thread is responding to usb read request every 100ms or faster.
+Firmware internally is built using three tasks - one task for blinking RDY led to signal that we are still alive and running. Second thread is requesting measurements from sensor every 60 seconds and third thread is responding to usb read request every 100ms or faster.
 
 #### Firmware flashing
 
@@ -80,7 +81,7 @@ Device uses SWD interface with three pins on the PCB.
 * JP2 - SWDCLK
 * JP3 - NRST
 
-Conecto those ping to your SWD flasher, optionally connect JP$,JP% to power-on the device and upload the firmware using your flasher's software.
+Connect those pins to your SWD flasher, optionally connect pins JP4 and JP5 to power-on the device and upload the firmware using your flasher's software.
 
 ## Host software
 
@@ -152,7 +153,7 @@ struct usbhumeDevice is a opaque object, whose lifecycle is managed by libusb. O
     
 ### usbhumereq - measurement request utility
 
-usbhumereq, located in host/src/usbhume queries device for current measurement and prints it to stdout. It's main purpose is to show, how to use libusbhume and check, that device is working. You need to provide that binary with capabilities to work with usb bus and detach devices from kernel drivers.
+usbhumereq, located in host/src/usbhume queries device for current measurement and prints it to stdout. It's main purpose is to show how to use libusbhume and check that device is working. You need to provide that binary with capabilities to work with usb bus and detach devices from kernel drivers.
 
 ```
 sudo ./usbhumereq
@@ -168,7 +169,7 @@ This tool is built in Go language and requires Go development kit to be installe
 #### How to build usbhume2graphite
 
 * Install [Go](https://golang.org/)
-* Install graphite package for go ```go get -u github.com/marpaia/graphite-golang```
+* Install graphite package for Go ```go get -u github.com/marpaia/graphite-golang```
 * Build libusbhume, as described above
 * Copy libusbhume binary AND header file into usbhume2graphite folder
 * Build the binary ```go build```
@@ -181,10 +182,10 @@ sudo ./usbhume2grpahite -period 60 -metrics-host 127.0.0.1 -metrics-port 2003 -m
 
 Values, shown above, are default values for configuration options.
 
-* *period* defines pool period in seconds. Don't forget, internally devices makes measurements every 60 seconds, so there is not need to poll it frequently.
+* *period* defines poll period in seconds. Don't forget, device makes measurements every 60 seconds, so there is no need to poll it more frequently.
 * *metrics-host* address of Graphite metrics collector
 * *metrics-port* port of Graphite metrics collector
-* *metrics-prefix* usbhume2graphite posts two metrics: T and RH and those metrics will be prefixed with metrics-prefix.
+* *metrics-prefix* usbhume2graphite posts two metrics: T and RH and those metrics will be prefixed with *metrics-prefix*.
 
 #Limitations
 
@@ -195,20 +196,20 @@ Measurement limitations are defined by used sensor. For DHT11 it would be:
 * Temperature range: 0-50 Celsius degrees
 * Temperature measurement error: 2%
 
-As for device itself, it have two restrictions:
+As for device itself, it have two limitations:
 
 * Sensor is polled once per 60 seconds. I discovered, that faster polling could heat-up the sensor itself and add more error to measurements. Anyway, under normal conditions temperature and humidity are not changing very fast.
-* You can't attach several devices to a single host and library doesn't supports it. As device problem could be fixed by changing serial no in firmware and keeping it unique over several devices, library would require more changes. May be sometime i'll fix it.
+* You can't attach several devices to a single host and library doesn't supports it. As device problem could be fixed by changing serial no in the firmware and keeping it unique over several devices, library would require more changes. May be sometime i'll fix it.
 
 #Bugs
 
 Lots.
 
-## Authors
+# Authors
 
 * **Denis Chapligin** - *Initial work* - https://github.com/akashihi
 
-## License
+# License
 
 This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
 
