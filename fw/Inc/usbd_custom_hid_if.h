@@ -20,82 +20,10 @@
  extern "C" {
 #endif
 #include "usbd_customhid.h"
-/* USER CODE BEGIN INCLUDE */
-/* USER CODE END INCLUDE */
+extern USBD_CUSTOM_HID_ItfTypeDef  USBD_CustomHID_fops_FS;
 
-/** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
-  * @{
-  */
-  
-/** @defgroup USBD_CUSTOM_HID
-  * @brief header 
-  * @{
-  */ 
-
-/** @defgroup USBD_CUSTOM_HID_Exported_Defines
-  * @{
-  */ 
-/* USER CODE BEGIN EXPORTED_DEFINES */
-/* USER CODE END EXPORTED_DEFINES */
-
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_CUSTOM_HID_Exported_Types
-  * @{
-  */  
-/* USER CODE BEGIN EXPORTED_TYPES */
-/* USER CODE END EXPORTED_TYPES */
-
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_CUSTOM_HID_Exported_Macros
-  * @{
-  */ 
-/* USER CODE BEGIN EXPORTED_MACRO */
-/* USER CODE END EXPORTED_MACRO */
-
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_CUSTOM_HID_Exported_Variables
-  * @{
-  */ 
-  extern USBD_CUSTOM_HID_ItfTypeDef  USBD_CustomHID_fops_FS;
-
-/* USER CODE BEGIN EXPORTED_VARIABLES */
-/* USER CODE END EXPORTED_VARIABLES */
-
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_CUSTOM_HID_Exported_FunctionsPrototype
-  * @{
-  */ 
-
-/* USER CODE BEGIN EXPORTED_FUNCTIONS */
-/* USER CODE END EXPORTED_FUNCTIONS */
-/**
-  * @}
-  */
-   
-/**
-  * @}
-  */ 
-
-/**
-* @}
-*/
- 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* __USBD_CUSTOM_HID_IF_H_ */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
