@@ -31,4 +31,7 @@ void HAL_MspInit(void)
   HAL_NVIC_SetPriority(PendSV_IRQn, 3, 0);
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 3, 0);
+	
+	/* Uncomment when building on F042 with TSSOP20 */
+	//__HAL_REMAP_PIN_ENABLE(HAL_REMAP_PA11_PA12);
 }
