@@ -61,8 +61,7 @@ void MX_FREERTOS_Init(void) {
 void StartWdgTask(void const * argument) {
 	char state = 1;
 	HAL_TIM_Base_Start_IT(&htim3);
-  for(;;)
-  {
+  for(;;) {
 		if (state) {
 			state = 0;
 			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
@@ -78,15 +77,13 @@ void StartDhtTask(void const * argument) {
   HAL_Delay(4000); //We need to give DHT11 couple of seconds to settle.
 	
 	HAL_TIM_Base_Start_IT(&htim2);
-  for(;;)
-  {
+  for(;;) {
     xQueueSend(usbQueueHandle, readDHT(),0);
 		xSemaphoreTake(dhtSemHandle, 120000/portTICK_PERIOD_MS);
   }
 }
 
-void StartUsbTask(void const * argument)
-{
+void StartUsbTask(void const * argument) {
 	uint8_t usbData[4];
 	
 	usbData[0] = 0;
@@ -95,9 +92,8 @@ void StartUsbTask(void const * argument)
 	usbData[3] = 0;
 
   MX_USB_DEVICE_Init();
-  for(;;)
-  {
- 		xQueueReceive(usbQueueHandle, &usbData, 100/portTICK_PERIOD_MS);		
+  for(;;) {
+ 		xQueueReceive(usbQueueHandle, &usbData, 10/portTICK_PERIOD_MS);		
 		USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, usbData, 4);
   }
 }
