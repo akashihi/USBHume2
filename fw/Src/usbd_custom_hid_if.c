@@ -13,7 +13,9 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #include "usbd_custom_hid_if.h"
+
 __ALIGN_BEGIN static uint8_t CUSTOM_HID_ReportDesc_FS[USBD_CUSTOM_HID_REPORT_DESC_SIZE] __ALIGN_END =
 {
   /* USER CODE BEGIN 0 */ 
@@ -38,11 +40,11 @@ __ALIGN_BEGIN static uint8_t CUSTOM_HID_ReportDesc_FS[USBD_CUSTOM_HID_REPORT_DES
     0x95, 4, 	                   //   REPORT_COUNT (4)
     0x81, 0x82,                    //   INPUT (Data,Var,Abs,Vol)
    /* USER CODE END 0 */ 
-  0xC0    /*     END_COLLECTION	             */
-   
+  0xC0    
+	/*     END_COLLECTION	             */
 }; 
 
-extern USBD_HandleTypeDef hUsbDeviceFS;
+  extern USBD_HandleTypeDef hUsbDeviceFS;
 
 static int8_t CUSTOM_HID_Init_FS     (void);
 static int8_t CUSTOM_HID_DeInit_FS   (void);
@@ -57,17 +59,14 @@ USBD_CUSTOM_HID_ItfTypeDef USBD_CustomHID_fops_FS =
   CUSTOM_HID_OutEvent_FS,
 };
 
-static int8_t CUSTOM_HID_Init_FS(void)
-{ 
+static int8_t CUSTOM_HID_Init_FS(void) { 
   return (0);
 }
 
-static int8_t CUSTOM_HID_DeInit_FS(void)
-{
+static int8_t CUSTOM_HID_DeInit_FS(void) {
   return (0);
 }
 
-static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state)
-{ 
+static int8_t CUSTOM_HID_OutEvent_FS  (uint8_t event_idx, uint8_t state) { 
   return (0);
 }

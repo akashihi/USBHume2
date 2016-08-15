@@ -16,14 +16,6 @@
 #ifndef __USBD_CUSTOM_HID_IF_H_
 #define __USBD_CUSTOM_HID_IF_H_
 
-#ifdef __cplusplus
- extern "C" {
-#endif
 #include "usbd_customhid.h"
-extern USBD_CUSTOM_HID_ItfTypeDef  USBD_CustomHID_fops_FS;
-
-#ifdef __cplusplus
-}
-#endif
-
+  extern USBD_CUSTOM_HID_ItfTypeDef  USBD_CustomHID_fops_FS;
 #endif /* __USBD_CUSTOM_HID_IF_H_ */
