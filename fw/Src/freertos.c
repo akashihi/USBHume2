@@ -54,7 +54,7 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(usbTask, StartUsbTask, osPriorityIdle, 0, 128);
   usbTaskHandle = osThreadCreate(osThread(usbTask), NULL);
 
-  osMessageQDef(usbQueue, 2, uint16_t);
+  osMessageQDef(usbQueue, 2, uint8_t[4]);
   usbQueueHandle = osMessageCreate(osMessageQ(usbQueue), NULL);
 }
 
