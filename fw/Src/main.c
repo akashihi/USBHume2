@@ -19,38 +19,41 @@
 #include "usb_device.h"
 #include "gpio.h"
 
-extern osMessageQId wdgQueueHandle;
-extern osMessageQId dhtQueueHandle;
+extern osSemaphoreId wdgSemHandle;
+extern osSemaphoreId dhtSemHandle;
 
 void SystemClock_Config(void);
 void Error_Handler(void);
 void MX_FREERTOS_Init(void);
 
-/**
- * Entry point
- */
 int main(void)
 {
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+  /* Configure the system clock */
   SystemClock_Config();
 
+  /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
 
+  /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
 
+  /* Start scheduler */
   osKernelStart();
   
-  while (1) { }
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1) { }  
 }
 
-/** 
- * System Clock Configuration
- */
-void SystemClock_Config(void)
-{
+/** System Clock Configuration
+*/
+void SystemClock_Config(void) {
 
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
@@ -94,28 +97,20 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 3, 0);
 }
 
-/**
-  * Timer interrupts handling.
-  * For TIM1 we update hal ticks.
-  * For other interrupts we send corresponging
-  * messages to queues.
-  */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   if (htim->Instance == TIM1) {
     HAL_IncTick();
   }
 
 	if (htim->Instance == TIM3) {
-    xQueueSendFromISR(wdgQueueHandle, NULL,0);
+    xSemaphoreGiveFromISR(wdgSemHandle,0);
   }
-	
+
 	if (htim->Instance == TIM2) {
-    xQueueSendFromISR(dhtQueueHandle, NULL,0);
+    xSemaphoreGiveFromISR(dhtSemHandle,0);
   }
 }
 
-void Error_Handler(void)
-{
-  while(1) { }
+void Error_Handler(void) {
+  while(1)  { }
 }
