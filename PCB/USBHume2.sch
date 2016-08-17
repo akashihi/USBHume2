@@ -14508,10 +14508,10 @@ MAX3223-MAX3243.pdf</description>
 <part name="R2" library="rcl" deviceset="R-EU_" device="M0805" value="10k"/>
 <part name="X1" library="con-usb-3" deviceset="USB" device="-A-H"/>
 <part name="U1" library="RHT03_DHT-22_AM2302" deviceset="RHT03_DHT-22_AM2302" device="WIRED"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
+<part name="C6" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="STM32" library="stm32f0" deviceset="STM32F042" device=""/>
-<part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
+<part name="C1" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
@@ -14525,7 +14525,7 @@ MAX3223-MAX3243.pdf</description>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="R4" library="rcl" deviceset="R-EU_" device="M0805" value="1k"/>
 <part name="LED3" library="led" deviceset="LED" device="CHIPLED_0805" value="ACT"/>
-<part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
+<part name="C2" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="JP3" library="pinhead" deviceset="PINHD-1X1" device="" value="NRST"/>
 <part name="JP4" library="pinhead" deviceset="PINHD-1X1" device="" value="3V3"/>
@@ -14536,12 +14536,12 @@ MAX3223-MAX3243.pdf</description>
 <part name="P+2" library="supply1" deviceset="+5V" device=""/>
 <part name="+3V5" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
-<part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
+<part name="C3" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
+<part name="C4" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
-<part name="C5" library="rcl" deviceset="CPOL-EU" device="A/3216-18W" value="10u"/>
-<part name="C7" library="rcl" deviceset="CPOL-EU" device="A/3216-18W" value="10u"/>
+<part name="C5" library="rcl" deviceset="CPOL-EU" device="C/6032-28R" value="10u"/>
+<part name="C7" library="rcl" deviceset="CPOL-EU" device="C/6032-28R" value="10u"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="R5" library="rcl" deviceset="R-EU_" device="M0805" value="33"/>
