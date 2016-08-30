@@ -26,14 +26,22 @@ import (
 	"errors"
 )
 
-func request() (C.uint8_t, C.uint8_t, error) {
+type UsbHume struct {
+	device *C.struct_usbhumeDevice
+}
+
+func openUsbHume() (*UsbHume, error) {
 	handle := C.usbhumeOpen()
 	if handle == nil {
-		return 0, 0, errors.New("Can't open device")
+		return nil, errors.New("Can't open device")
 	}
-	result := C.usbhumeRequest(handle)
+	return &UsbHume{
+		device: handle,
+	},nil
+}
 
-	C.usbhumeClose(handle)
+func (d *UsbHume) request() (C.uint8_t, C.uint8_t, error) {
+	result := C.usbhumeRequest(d.device)
 
 	if result.swErr < 0 {
 		return 0, 0, errors.New("libusb error")
@@ -43,4 +51,8 @@ func request() (C.uint8_t, C.uint8_t, error) {
 	}
 
 	return result.t, result.rh, nil
+}
+
+func (d *UsbHume) closeUsbHume() {
+	C.usbhumeClose(d.device)
 }

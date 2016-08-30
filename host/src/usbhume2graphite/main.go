@@ -27,17 +27,22 @@ func wait(configuration Configuration) {
 
 func main() {
 	var configuration = config()
+	var device, err = openUsbHume()
+        if err != nil {
+		fmt.Printf("Connection error: %v\n", err)
+		return
+	}
 	for {
-		t, rh, err := request()
+		t, rh, err := device.request()
 		if err != nil {
-			fmt.Printf("Request error: %v", err)
+			fmt.Printf("Request error: %v\n", err)
 			wait(configuration)
 			continue
 		}
 
 		Graphite, err := graphite.NewGraphite(configuration.MetricsHost, configuration.MetricsPort)
 		if err != nil {
-			fmt.Printf("Can't connect to graphite collector: %v", err)
+			fmt.Printf("Can't connect to graphite collector: %v\n", err)
 			wait(configuration)
 			continue
 		}
@@ -47,4 +52,5 @@ func main() {
 
 		wait(configuration)
 	}
+	device.closeUsbHume()
 }
