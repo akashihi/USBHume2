@@ -49,6 +49,7 @@ func main() {
 
 		Graphite.SimpleSend(fmt.Sprint(configuration.MetricsPrefix, ".T"), strconv.Itoa(int(t)))
 		Graphite.SimpleSend(fmt.Sprint(configuration.MetricsPrefix, ".RH"), strconv.Itoa(int(rh)))
+		Graphite.Disconnect()
 
 		wait(configuration)
 	}
