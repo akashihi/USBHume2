@@ -14527,7 +14527,6 @@ MAX3223-MAX3243.pdf</description>
 <part name="LED3" library="led" deviceset="LED" device="CHIPLED_0805" value="ACT"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C1206K" value="100n"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
-<part name="JP3" library="pinhead" deviceset="PINHD-1X1" device="" value="NRST"/>
 <part name="JP4" library="pinhead" deviceset="PINHD-1X1" device="" value="3V3"/>
 <part name="JP5" library="pinhead" deviceset="PINHD-1X1" device="" value="GND"/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
@@ -14544,10 +14543,6 @@ MAX3223-MAX3243.pdf</description>
 <part name="C7" library="rcl" deviceset="CPOL-EU" device="C/6032-28R" value="10u"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="R5" library="rcl" deviceset="R-EU_" device="M0805" value="33"/>
-<part name="R7" library="rcl" deviceset="R-EU_" device="M0805" value="33"/>
-<part name="R8" library="rcl" deviceset="R-EU_" device="M0805" value="1k5"/>
-<part name="+3V6" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14576,7 +14571,6 @@ MAX3223-MAX3243.pdf</description>
 <instance part="LED3" gate="G$1" x="88.9" y="25.4" rot="R90"/>
 <instance part="C2" gate="G$1" x="-53.34" y="7.62"/>
 <instance part="GND5" gate="1" x="-53.34" y="-5.08"/>
-<instance part="JP3" gate="G$1" x="-71.12" y="15.24" rot="R180"/>
 <instance part="JP4" gate="G$1" x="-63.5" y="71.12"/>
 <instance part="JP5" gate="G$1" x="-63.5" y="60.96"/>
 <instance part="+3V2" gate="G$1" x="-76.2" y="81.28"/>
@@ -14593,10 +14587,6 @@ MAX3223-MAX3243.pdf</description>
 <instance part="C7" gate="G$1" x="55.88" y="78.74"/>
 <instance part="GND11" gate="1" x="-20.32" y="66.04"/>
 <instance part="GND12" gate="1" x="55.88" y="66.04"/>
-<instance part="R5" gate="G$1" x="162.56" y="5.08" rot="R180"/>
-<instance part="R7" gate="G$1" x="172.72" y="2.54" rot="R180"/>
-<instance part="R8" gate="G$1" x="180.34" y="12.7" rot="R90"/>
-<instance part="+3V6" gate="G$1" x="180.34" y="38.1"/>
 </instances>
 <busses>
 </busses>
@@ -14714,8 +14704,8 @@ MAX3223-MAX3243.pdf</description>
 <pinref part="STM32" gate="G$1" pin="PA9[PA11]/USART1_TX/TIM1_CH2"/>
 <wire x1="63.5" y1="15.24" x2="127" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="127" y1="15.24" x2="127" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="R7" gate="G$1" pin="2"/>
-<wire x1="167.64" y1="2.54" x2="127" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="2.54" x2="127" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="D-"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -14723,8 +14713,8 @@ MAX3223-MAX3243.pdf</description>
 <wire x1="124.46" y1="5.08" x2="124.46" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="STM32" gate="G$1" pin="PA10[PA12]/USART1_RX/TIM1_CH3"/>
 <wire x1="124.46" y1="12.7" x2="63.5" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="157.48" y1="5.08" x2="124.46" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="5.08" x2="124.46" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="D+"/>
 </segment>
 </net>
 <net name="+3V3" class="0">
@@ -14779,11 +14769,6 @@ MAX3223-MAX3243.pdf</description>
 <junction x="40.64" y="86.36"/>
 <junction x="55.88" y="86.36"/>
 </segment>
-<segment>
-<pinref part="R8" gate="G$1" pin="2"/>
-<pinref part="+3V6" gate="G$1" pin="+3V3"/>
-<wire x1="180.34" y1="17.78" x2="180.34" y2="35.56" width="0.1524" layer="91"/>
-</segment>
 </net>
 <net name="N$7" class="0">
 <segment>
@@ -14824,27 +14809,6 @@ MAX3223-MAX3243.pdf</description>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="-30.48" y1="15.24" x2="-53.34" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="-53.34" y1="15.24" x2="-53.34" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="JP3" gate="G$1" pin="1"/>
-<wire x1="-53.34" y1="15.24" x2="-68.58" y2="15.24" width="0.1524" layer="91"/>
-<junction x="-53.34" y="15.24"/>
-</segment>
-</net>
-<net name="N$16" class="0">
-<segment>
-<pinref part="X1" gate="G$1" pin="D-"/>
-<pinref part="R7" gate="G$1" pin="1"/>
-<wire x1="198.12" y1="2.54" x2="177.8" y2="2.54" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$17" class="0">
-<segment>
-<pinref part="R5" gate="G$1" pin="1"/>
-<pinref part="X1" gate="G$1" pin="D+"/>
-<wire x1="167.64" y1="5.08" x2="180.34" y2="5.08" width="0.1524" layer="91"/>
-<pinref part="R8" gate="G$1" pin="1"/>
-<wire x1="180.34" y1="5.08" x2="198.12" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="180.34" y1="5.08" x2="180.34" y2="7.62" width="0.1524" layer="91"/>
-<junction x="180.34" y="5.08"/>
 </segment>
 </net>
 <net name="N$2" class="0">
