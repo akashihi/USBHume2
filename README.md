@@ -23,8 +23,8 @@ Schematics and board made with [Eagle](https://cadsoft.io/). PCB is single layer
 ### Making the device
 
 * Make a PCB using your favourite process or order it somewhere.
-* Solder USB connector and power supply part (IC1, C3, C4, C5, C7, JP4, JP5)
-* Plug device into USB and check voltage between JP4 and JP5, it should be 3.3V
+* Solder USB connector and power supply part (IC1, C3, C4, C5, C7, JP1)
+* Plug device into USB and check voltage between JP1 pins, it should be 3.3V
 * Solder everything else
 
 #### Partlist
@@ -36,8 +36,6 @@ Schematics and board made with [Eagle](https://cadsoft.io/). PCB is single layer
 * 1x 510 0805 resistor (R1)
 * 1x 10k 0805 resistor (R2)
 * 1x 1k 0805 resistor (R4)
-* 2x 33 0805 resistor (R5, R7)
-* 1x 1k5 0805 resistor (R8)
 * 1x chip led 0805 (LED3)
 
 ### Making the firmware
